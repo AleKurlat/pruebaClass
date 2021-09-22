@@ -25,7 +25,7 @@ function actualizarPersonas() {
         let nuevoTexto = document.createTextNode(`${i}) ${persona.obtenerDescripcion()}`);
         let nuevoBoton = document.createElement("button");
         nuevoBoton.innerHTML = "Editar";
-        nuevoBoton.onclick = () => { editarPersona(i) }
+        nuevoBoton.onclick = () => { editarPersona(persona) }
         nuevoParrafo.appendChild(nuevoTexto);
         nuevoParrafo.appendChild(nuevoBoton);
         listaPersonas.appendChild(nuevoParrafo);
@@ -34,10 +34,10 @@ function actualizarPersonas() {
     areaPersonas.appendChild(listaPersonas);
 }
 
-function editarPersona(i) {
+function editarPersona(persona) {
     const nuevoNombre = prompt("Ingresar nuevo nombre");
-    personas[i].cambiarNombre(nuevoNombre);
+    persona.cambiarNombre(nuevoNombre);
     const nuevaEdad = prompt("Ingresar nueva edad");
-    personas[i].cambiarEdad(parseInt(nuevaEdad));
+    persona.cambiarEdad(parseInt(nuevaEdad));
     actualizarPersonas();
 }
