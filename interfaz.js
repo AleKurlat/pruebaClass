@@ -1,4 +1,4 @@
-import { Persona } from "./Persona.js";
+import * as Persona from "./Persona.js";
 
 const formulario = document.querySelector("#formulario");
 const campoNombre = formulario.querySelector("input[name='nombre']");
@@ -22,10 +22,10 @@ function actualizarPersonas() {
     let listaPersonas = document.createElement("div");
     personas.forEach((persona, i) => {
         let nuevoParrafo = document.createElement("p")
-        let nuevoTexto = document.createTextNode(`${i}) ${persona.obtenerDescripcion()}`);
+        let nuevoTexto = document.createTextNode(`${i}) ${Persona.obtenerDescripcion(persona)}`);
         let nuevoBoton = document.createElement("button");
         nuevoBoton.innerHTML = "Editar";
-        nuevoBoton.onclick = () => { editarPersona(i) }
+        nuevoBoton.onclick = () => { editarPersona(persona) }
         nuevoParrafo.appendChild(nuevoTexto);
         nuevoParrafo.appendChild(nuevoBoton);
         listaPersonas.appendChild(nuevoParrafo);
@@ -34,10 +34,10 @@ function actualizarPersonas() {
     areaPersonas.appendChild(listaPersonas);
 }
 
-function editarPersona(i) {
+function editarPersona(persona) {
     const nuevoNombre = prompt("Ingresar nuevo nombre");
-    personas[i].cambiarNombre(nuevoNombre);
+    Persona.cambiarNombre(nuevoNombre, persona);
     const nuevaEdad = prompt("Ingresar nueva edad");
-    personas[i].cambiarEdad(parseInt(nuevaEdad));
+    Persona.cambiarEdad(parseInt(nuevaEdad), persona);
     actualizarPersonas();
 }

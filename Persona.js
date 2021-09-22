@@ -1,52 +1,45 @@
-export class Persona {
-    constructor(nombre, edad) {
-        this.nombre = nombre;
-        this.edad = edad;
+function chequearNombre(nombre) {
+    if (nombre.length < 6) {
+        alert("El nombre debe tener al menos seis caracteres");
+        return false;
     }
+    return true;
+}
 
-    static crearPersona(nombre, edad) {
-        const nombreOk = this.chequearNombre(nombre);
-        const edadOk = this.chequearEdad(edad);
-        if (nombreOk && edadOk) {
-            return new Persona(nombre, edad);
-        }
+function chequearEdad(edad) {
+    if (typeof edad !== "number") {
+        alert("Debe ingresar un número");
+        return false;
     }
+    const esMayorOIgualQueCero = edad >= 0;
+    if (!esMayorOIgualQueCero) {
+        alert("El número ingresado debe ser mayor igual a 0");
+        return false;
+    }
+    return true;
+}
 
-    static chequearNombre(nombre) {
-        if (nombre.length < 6) {
-            alert("El nombre debe tener al menos seis caracteres");
-            return false;
-        }
-        return true;
+export function crearPersona(nombre, edad) {
+    const nombreOk = chequearNombre(nombre);
+    const edadOk = chequearEdad(edad);
+    if (nombreOk && edadOk) {
+        return { nombre, edad }
     }
+}
 
-    static chequearEdad(edad) {
-        if (typeof edad !== "number") {
-            alert("Debe ingresar un número");
-            return false;
-        }
-        const esMayorOIgualQueCero = edad >= 0;
-        if (!esMayorOIgualQueCero) {
-            alert("El número ingresado debe ser mayor igual a 0");
-            return false;
-        }
-        return true;
+export function cambiarNombre(nuevoNombre, persona) {
+    if (chequearNombre(nuevoNombre)) {
+        persona.nombre = nuevoNombre;
     }
+}
 
-    cambiarNombre(nuevoNombre) {
-        if (Persona.chequearNombre(nuevoNombre)) {
-            this.nombre = nuevoNombre;
-        }
+export function cambiarEdad(nuevaEdad, persona) {
+    if (chequearEdad(nuevaEdad)) {
+        persona.edad = nuevaEdad;
     }
+}
 
-    cambiarEdad(nuevaEdad) {
-        if (Persona.chequearEdad(nuevaEdad)) {
-            this.edad = nuevaEdad;
-        }
-    }
-
-    obtenerDescripcion() {
-        const descripcion = `Nombre: ${this.nombre}, Edad: ${this.edad}`;
-        return descripcion;
-    }
+export function obtenerDescripcion(persona) {
+    const descripcion = `Nombre: ${persona.nombre}, Edad: ${persona.edad}`;
+    return descripcion;
 }
