@@ -1,4 +1,4 @@
-import { Persona } from "./modulo.js";
+import { Persona } from "./Persona.js";
 
 const formulario = document.querySelector("#formulario");
 const campoNombre = formulario.querySelector("input[name='nombre']");
