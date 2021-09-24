@@ -12,7 +12,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 var _Persona_nombre, _Persona_edad;
 const validaciones = {
     chequearNombre(nombre) {
-        if (nombre === null) {
+        if (!nombre) {
             throw new Error("Debe ingresarse un nombre para continuar");
         }
         if (nombre.length < 6) {
@@ -21,7 +21,7 @@ const validaciones = {
         return nombre;
     },
     chequearEdad(edad) {
-        if (edad === null) {
+        if (!edad) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
         let edadANumero;

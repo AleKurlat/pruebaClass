@@ -1,6 +1,6 @@
 const validaciones = {
     chequearNombre(nombre: string | null) {
-        if (nombre === null) {
+        if (!nombre) {
             throw new Error("Debe ingresarse un nombre para continuar");
         }
         if (nombre.length < 6) {
@@ -10,7 +10,7 @@ const validaciones = {
     },
 
     chequearEdad(edad: string | number | null) {
-        if (edad === null) {
+        if (!edad) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
 
