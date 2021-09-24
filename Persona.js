@@ -7,6 +7,9 @@ const validaciones = {
 
     chequearEdad(edad) {
         const edadANumero = parseInt(edad);
+        if (isNaN(edadANumero)) {
+            throw new Error("Se debe ingresar un número");
+        }
         const esMayorOIgualQueCero = edadANumero >= 0;
         if (!esMayorOIgualQueCero) {
             throw new Error("El número ingresado debe ser mayor igual a 0");
