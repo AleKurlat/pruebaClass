@@ -1,21 +1,28 @@
 import { Persona } from "./Persona.js";
-
-const formulario = document.querySelector("#formulario");
-const campoNombre = formulario.querySelector("input[name='nombre']");
-const campoEdad = formulario.querySelector("input[name='edad']");
-const areaPersonas = document.querySelector("#areaPersonas");
+const personas = [];
 document.querySelector("#botonAgregar").addEventListener("click", agregarPersona);
 
-const personas = [];
-
-function agregarPersona(e) {
-    const valorNombre = campoNombre.value;
-    const valorEdad = parseInt(campoEdad.value);
-    const nuevaPersona = Persona.crearPersona(valorNombre, valorEdad);
-    if (nuevaPersona) {
+function agregarPersona() {
+    const formulario = document.querySelector("#formulario");
+    const valorNombre = formulario.querySelector("input[name='nombre']").value;
+    const valorEdad = formulario.querySelector("input[name='edad']").value;
+    try {
+        const nuevaPersona = new Persona(valorNombre, valorEdad);
         personas.push(nuevaPersona);
         actualizarPersonas();
     }
+    catch (e) { alert(e.message) }
+}
+
+function editarPersona(persona) {
+    try {
+        const nuevoNombre = prompt("Ingresar nuevo nombre");
+        persona.cambiarNombre(nuevoNombre);
+        const nuevaEdad = prompt("Ingresar nueva edad");
+        persona.cambiarEdad(nuevaEdad);
+        actualizarPersonas();
+    }
+    catch (e) { alert(e.message) }
 }
 
 function actualizarPersonas() {
@@ -30,14 +37,8 @@ function actualizarPersonas() {
         nuevoParrafo.appendChild(nuevoBoton);
         listaPersonas.appendChild(nuevoParrafo);
     })
+    const areaPersonas = document.querySelector("#areaPersonas");
     areaPersonas.innerHTML = "";
     areaPersonas.appendChild(listaPersonas);
 }
 
-function editarPersona(persona) {
-    const nuevoNombre = prompt("Ingresar nuevo nombre");
-    persona.cambiarNombre(nuevoNombre);
-    const nuevaEdad = prompt("Ingresar nueva edad");
-    persona.cambiarEdad(parseInt(nuevaEdad));
-    actualizarPersonas();
-}
