@@ -23,7 +23,7 @@ const validaciones = {
         if (typeof edad === "string") {
             edadANumero = parseInt(edad)
             if (isNaN(edadANumero)) {
-                throw new Error("Se debe ingresar un número");
+                throw new Error("El valor ingresado debe ser un número");
             }
         }
         if (edadANumero) {
