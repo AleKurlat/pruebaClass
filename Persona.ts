@@ -14,7 +14,7 @@ const validaciones = {
             throw new Error("La edad no puede ser nula");
         }
 
-        let edadANumero: number;
+        let edadANumero: number | undefined;
 
         if (typeof edad === "number") {
             edadANumero = edad;
@@ -26,23 +26,25 @@ const validaciones = {
                 throw new Error("Se debe ingresar un número");
             }
         }
-
-        const esMayorOIgualQueCero = edadANumero! >= 0;
-        if (!esMayorOIgualQueCero) {
-            throw new Error("El número ingresado debe ser mayor igual a 0");
+        if (edadANumero) {
+            const esMayorOIgualQueCero = edadANumero >= 0;
+            if (!esMayorOIgualQueCero) {
+                throw new Error("El número ingresado debe ser mayor igual a 0");
+            }
+            return edadANumero;
         }
-        return edadANumero!;
     }
 }
 
 export class Persona {
-    #nombre: string
-    #edad: number
+    #nombre?: string;
+    #edad?: number;
+
     constructor(nombre: string, edad: string | number) {
-        validaciones.chequearNombre(nombre);
-        this.#nombre = nombre;
+        const nombreOk = validaciones.chequearNombre(nombre);
+        if (nombreOk) { this.#nombre = nombreOk };
         const edadANumero = validaciones.chequearEdad(edad);
-        this.#edad = edadANumero;
+        if (edadANumero) { this.#edad = edadANumero; }
     }
 
     cambiarNombre(nuevoNombre: string | null) {
