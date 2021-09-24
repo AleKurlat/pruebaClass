@@ -18,25 +18,27 @@ const validaciones = {
 }
 
 export class Persona {
+    #nombre
+    #edad
     constructor(nombre, edad) {
         validaciones.chequearNombre(nombre);
-        this.nombre = nombre;
+        this.#nombre = nombre;
         validaciones.chequearEdad(edad);
-        this.edad = edad;
+        this.#edad = edad;
     }
 
     cambiarNombre(nuevoNombre) {
         validaciones.chequearNombre(nuevoNombre);
-        this.nombre = nuevoNombre;
+        this.#nombre = nuevoNombre;
     }
 
     cambiarEdad(nuevaEdad) {
         validaciones.chequearEdad(nuevaEdad);
-        this.edad = nuevaEdad;
+        this.#edad = nuevaEdad;
     }
 
     obtenerDescripcion() {
-        const descripcion = `Nombre: ${this.nombre}, Edad: ${this.edad}`;
+        const descripcion = `Nombre: ${this.#nombre}, Edad: ${this.#edad}`;
         return descripcion;
     }
 }
