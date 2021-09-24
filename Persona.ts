@@ -1,17 +1,17 @@
 const validaciones = {
     chequearNombre(nombre: string | null) {
-        if (typeof nombre === null) {
-            throw new Error("El nombre no puede ser nulo");
+        if (nombre === null) {
+            throw new Error("Debe ingresarse un nombre para continuar");
         }
-        if (typeof nombre === "string" && nombre.length < 6) {
+        if (nombre.length < 6) {
             throw new Error("El nombre debe tener al menos seis caracteres");
         }
         return nombre;
     },
 
     chequearEdad(edad: string | number | null) {
-        if (typeof edad === null) {
-            throw new Error("La edad no puede ser nula");
+        if (edad === null) {
+            throw new Error("Debe ingresarse una edad para continuar");
         }
 
         let edadANumero: number | undefined;
