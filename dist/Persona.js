@@ -10,8 +10,21 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _Persona_nombre, _Persona_edad;
-const validaciones = {
-    chequearNombre(nombre) {
+export class Persona {
+    constructor(nombre, edad) {
+        _Persona_nombre.set(this, void 0);
+        _Persona_edad.set(this, void 0);
+        const nombreOk = this.constructor.chequearNombre(nombre);
+        if (nombreOk) {
+            __classPrivateFieldSet(this, _Persona_nombre, nombreOk, "f");
+        }
+        ;
+        const edadANumero = this.constructor.chequearEdad(edad);
+        if (edadANumero) {
+            __classPrivateFieldSet(this, _Persona_edad, edadANumero, "f");
+        }
+    }
+    static chequearNombre(nombre) {
         if (!nombre) {
             throw new Error("Debe ingresarse un nombre para continuar");
         }
@@ -19,9 +32,9 @@ const validaciones = {
             throw new Error("El nombre debe tener al menos seis caracteres");
         }
         return nombre;
-    },
-    chequearEdad(edad) {
-        if (!edad) {
+    }
+    static chequearEdad(edad) {
+        if (!edad && edad != 0) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
         let edadANumero;
@@ -42,29 +55,14 @@ const validaciones = {
             return edadANumero;
         }
     }
-};
-export class Persona {
-    constructor(nombre, edad) {
-        _Persona_nombre.set(this, void 0);
-        _Persona_edad.set(this, void 0);
-        const nombreOk = validaciones.chequearNombre(nombre);
-        if (nombreOk) {
-            __classPrivateFieldSet(this, _Persona_nombre, nombreOk, "f");
-        }
-        ;
-        const edadANumero = validaciones.chequearEdad(edad);
-        if (edadANumero) {
-            __classPrivateFieldSet(this, _Persona_edad, edadANumero, "f");
-        }
-    }
     cambiarNombre(nuevoNombre) {
-        const nombreOk = validaciones.chequearNombre(nuevoNombre);
+        const nombreOk = this.constructor.chequearNombre(nuevoNombre);
         if (nombreOk) {
             __classPrivateFieldSet(this, _Persona_nombre, nombreOk, "f");
         }
     }
     cambiarEdad(nuevaEdad) {
-        const edadOk = validaciones.chequearEdad(nuevaEdad);
+        const edadOk = this.constructor.chequearEdad(nuevaEdad);
         if (edadOk) {
             __classPrivateFieldSet(this, _Persona_edad, edadOk, "f");
         }

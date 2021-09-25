@@ -1,5 +1,8 @@
-const validaciones = {
-    chequearNombre(nombre: string | null) {
+export class Persona {
+    #nombre?: string;
+    #edad?: number;
+
+    static chequearNombre(nombre: string | null) {
         if (!nombre) {
             throw new Error("Debe ingresarse un nombre para continuar");
         }
@@ -7,10 +10,10 @@ const validaciones = {
             throw new Error("El nombre debe tener al menos seis caracteres");
         }
         return nombre;
-    },
+    }
 
-    chequearEdad(edad: string | number | null) {
-        if (!edad) {
+    static chequearEdad(edad: string | number | null) {
+        if (!edad && edad != 0) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
 
@@ -34,26 +37,21 @@ const validaciones = {
             return edadANumero;
         }
     }
-}
-
-export class Persona {
-    #nombre?: string;
-    #edad?: number;
 
     constructor(nombre: string, edad: string | number) {
-        const nombreOk = validaciones.chequearNombre(nombre);
+        const nombreOk = (this.constructor as typeof Persona).chequearNombre(nombre);
         if (nombreOk) { this.#nombre = nombreOk };
-        const edadANumero = validaciones.chequearEdad(edad);
+        const edadANumero = (this.constructor as typeof Persona).chequearEdad(edad);
         if (edadANumero) { this.#edad = edadANumero; }
     }
 
     cambiarNombre(nuevoNombre: string | null) {
-        const nombreOk = validaciones.chequearNombre(nuevoNombre)
+        const nombreOk = (this.constructor as typeof Persona).chequearNombre(nuevoNombre)
         if (nombreOk) { this.#nombre = nombreOk }
     }
 
     cambiarEdad(nuevaEdad: string | number | null) {
-        const edadOk = validaciones.chequearEdad(nuevaEdad);
+        const edadOk = (this.constructor as typeof Persona).chequearEdad(nuevaEdad);
         if (edadOk) { this.#edad = edadOk }
     }
 
