@@ -61,7 +61,7 @@ export class Persona {
 export class PersonaEspecial extends Persona {
     protected _ocupacion: string;
 
-    constructor(nombre: string, edad: number, ocupacion: string) {
+    constructor(nombre: string, edad: string | number, ocupacion: string) {
         super(nombre, edad)
         this._ocupacion = ocupacion;
     }
