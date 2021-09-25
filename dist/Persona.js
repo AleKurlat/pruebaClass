@@ -18,23 +18,15 @@ export class Persona {
         if (!edad && edad != 0) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
-        let edadANumero;
-        if (typeof edad === "number") {
-            edadANumero = edad;
+        const edadANumero = typeof edad === "number" ? edad : parseInt(edad);
+        if (isNaN(edadANumero)) {
+            throw new Error("El valor ingresado debe ser un número");
         }
-        if (typeof edad === "string") {
-            edadANumero = parseInt(edad);
-            if (isNaN(edadANumero)) {
-                throw new Error("El valor ingresado debe ser un número");
-            }
+        const esMayorOIgualQueCero = edadANumero >= 0;
+        if (!esMayorOIgualQueCero) {
+            throw new Error("El número ingresado debe ser mayor igual a 0");
         }
-        if (edadANumero) {
-            const esMayorOIgualQueCero = edadANumero >= 0;
-            if (!esMayorOIgualQueCero) {
-                throw new Error("El número ingresado debe ser mayor igual a 0");
-            }
-            return edadANumero;
-        }
+        return edadANumero;
     }
     set nombre(nuevoNombre) {
         const nombreOk = this.constructor.chequearNombre(nuevoNombre);
