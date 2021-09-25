@@ -1,9 +1,21 @@
 export class Persona {
     constructor(nombre, edad) {
-        this._nombre = this.constructor.chequearNombre(nombre);
-        this._edad = this.constructor.chequearEdad(edad);
+        this._nombre = this.chequearNombre(nombre);
+        this._edad = this.chequearEdad(edad);
     }
-    static chequearNombre(nombre) {
+    get nombre() {
+        return this._nombre;
+    }
+    set nombre(nuevoNombre) {
+        this._nombre = this.chequearNombre(nuevoNombre);
+    }
+    get edad() {
+        return this._edad;
+    }
+    set edad(nuevaEdad) {
+        this._edad = this.chequearEdad(nuevaEdad);
+    }
+    chequearNombre(nombre) {
         if (!nombre) {
             throw new Error("Debe ingresarse un nombre para continuar");
         }
@@ -12,7 +24,7 @@ export class Persona {
         }
         return nombre;
     }
-    static chequearEdad(edad) {
+    chequearEdad(edad) {
         if (!edad && edad != 0) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
@@ -26,18 +38,6 @@ export class Persona {
         }
         return edadANumero;
     }
-    set nombre(nuevoNombre) {
-        this._nombre = this.constructor.chequearNombre(nuevoNombre);
-    }
-    get nombre() {
-        return this._nombre;
-    }
-    set edad(nuevaEdad) {
-        this._edad = this.constructor.chequearEdad(nuevaEdad);
-    }
-    get edad() {
-        return this._edad;
-    }
     obtenerDescripcion() {
         const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}`;
         return descripcion;
@@ -48,14 +48,14 @@ export class PersonaEspecial extends Persona {
         super(nombre, edad);
         this._ocupacion = ocupacion;
     }
-    static chequearOcupacion(ocupacion) {
+    get ocupacion() { return this._ocupacion; }
+    set ocupacion(nuevaOcupacion) {
+        this._ocupacion = this.chequearOcupacion(nuevaOcupacion);
+    }
+    chequearOcupacion(ocupacion) {
         if (!ocupacion) {
             throw new Error("Debe ingresarse una ocupación");
         }
         return ocupacion;
-    }
-    get ocupacion() { return this._ocupacion; }
-    set ocupacion(nuevaOcupacion) {
-        this._ocupacion = this.constructor.chequearOcupacion(nuevaOcupacion);
     }
 }
