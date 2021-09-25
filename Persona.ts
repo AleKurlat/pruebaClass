@@ -33,15 +33,12 @@ export class Persona {
     }
 
     constructor(nombre: string, edad: string | number) {
-        const nombreOk = this.constructor.chequearNombre(nombre);
-        this._nombre = nombreOk;
-        const edadANumero = this.constructor.chequearEdad(edad);
-        this._edad = edadANumero;
+        this._nombre = this.constructor.chequearNombre(nombre);
+        this._edad = this.constructor.chequearEdad(edad);
     }
 
     set nombre(nuevoNombre: string | null) {
-        const nombreOk = this.constructor.chequearNombre(nuevoNombre)
-        this._nombre = nombreOk;
+        this._nombre = this.constructor.chequearNombre(nuevoNombre)
     }
 
     get nombre() {
@@ -49,8 +46,7 @@ export class Persona {
     }
 
     set edad(nuevaEdad: string | number | null) {
-        const edadOk = this.constructor.chequearEdad(nuevaEdad);
-        this._edad = edadOk;
+        this._edad = this.constructor.chequearEdad(nuevaEdad);
     }
 
     get edad() {
