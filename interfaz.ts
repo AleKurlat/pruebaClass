@@ -11,7 +11,7 @@ function agregarPersona() {
         personas.push(nuevaPersona);
         actualizarPersonas();
     }
-    catch (e: any) { alert(e.message) }
+    catch (e) { if (e instanceof Error) { alert(e.message) } }
 }
 
 function editarPersona(persona: Persona) {
@@ -22,7 +22,7 @@ function editarPersona(persona: Persona) {
         persona.cambiarEdad(nuevaEdad);
         actualizarPersonas();
     }
-    catch (e: any) { alert(e.message) }
+    catch (e) { if (e instanceof Error) { alert(e.message) } }
 }
 
 function actualizarPersonas() {

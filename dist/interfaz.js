@@ -11,7 +11,9 @@ function agregarPersona() {
         actualizarPersonas();
     }
     catch (e) {
-        alert(e.message);
+        if (e instanceof Error) {
+            alert(e.message);
+        }
     }
 }
 function editarPersona(persona) {
@@ -23,7 +25,9 @@ function editarPersona(persona) {
         actualizarPersonas();
     }
     catch (e) {
-        alert(e.message);
+        if (e instanceof Error) {
+            alert(e.message);
+        }
     }
 }
 function actualizarPersonas() {
