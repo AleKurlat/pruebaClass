@@ -1,4 +1,4 @@
-import { Persona } from "./Persona.js";
+import { Persona, PersonaEspecial } from "./Persona.js";
 const personas: Array<Persona> = [];
 document.querySelector("#botonAgregar")!.addEventListener("click", agregarPersona);
 

@@ -43,3 +43,19 @@ export class Persona {
         return descripcion;
     }
 }
+export class PersonaEspecial extends Persona {
+    constructor(nombre, edad, ocupacion) {
+        super(nombre, edad);
+        this._ocupacion = ocupacion;
+    }
+    static chequearOcupacion(ocupacion) {
+        if (!ocupacion) {
+            throw new Error("Debe ingresarse una ocupación");
+        }
+        return ocupacion;
+    }
+    get ocupacion() { return this._ocupacion; }
+    set ocupacion(nuevaOcupacion) {
+        this._ocupacion = this.constructor.chequearOcupacion(nuevaOcupacion);
+    }
+}

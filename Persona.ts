@@ -1,7 +1,6 @@
 export class Persona {
     protected _nombre: string;
     protected _edad: number;
-    ['constructor']!: typeof Persona;
 
     static chequearNombre(nombre: string | null): string {
         if (!nombre) {
@@ -33,12 +32,12 @@ export class Persona {
     }
 
     constructor(nombre: string, edad: string | number) {
-        this._nombre = this.constructor.chequearNombre(nombre);
-        this._edad = this.constructor.chequearEdad(edad);
+        this._nombre = (<typeof Persona>this.constructor).chequearNombre(nombre);
+        this._edad = (<typeof Persona>this.constructor).chequearEdad(edad);
     }
 
     set nombre(nuevoNombre: string | null) {
-        this._nombre = this.constructor.chequearNombre(nuevoNombre)
+        this._nombre = (<typeof Persona>this.constructor).chequearNombre(nuevoNombre)
     }
 
     get nombre(): string {
@@ -46,7 +45,7 @@ export class Persona {
     }
 
     set edad(nuevaEdad: string | number | null) {
-        this._edad = this.constructor.chequearEdad(nuevaEdad);
+        this._edad = (<typeof Persona>this.constructor).chequearEdad(nuevaEdad);
     }
 
     get edad(): number {
@@ -56,5 +55,23 @@ export class Persona {
     obtenerDescripcion(): string {
         const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}`;
         return descripcion;
+    }
+}
+
+export class PersonaEspecial extends Persona {
+    protected _ocupacion: string;
+
+    constructor(nombre: string, edad: number, ocupacion: string) {
+        super(nombre, edad)
+        this._ocupacion = ocupacion;
+    }
+
+    static chequearOcupacion(ocupacion: string): string {
+        if (!ocupacion) { throw new Error("Debe ingresarse una ocupación") }
+        return ocupacion;
+    }
+    get ocupacion() { return this._ocupacion }
+    set ocupacion(nuevaOcupacion: string) {
+        this._ocupacion = (<typeof PersonaEspecial>this.constructor).chequearOcupacion(nuevaOcupacion)
     }
 }
