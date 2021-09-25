@@ -2,7 +2,7 @@ import { Persona } from "./Persona.js";
 const personas: Array<Persona> = [];
 document.querySelector("#botonAgregar")!.addEventListener("click", agregarPersona);
 
-function agregarPersona() {
+function agregarPersona(): void {
     const formulario = document.querySelector("#formulario");
     const valorNombre = (<HTMLInputElement>formulario!.querySelector("input[name='nombre']")).value;
     const valorEdad = (<HTMLInputElement>formulario!.querySelector("input[name='edad']")).value;
@@ -14,7 +14,7 @@ function agregarPersona() {
     catch (e) { if (e instanceof Error) { alert(e.message) } }
 }
 
-function editarPersona(persona: Persona) {
+function editarPersona(persona: Persona): void {
     try {
         const nuevoNombre = prompt("Ingresar nuevo nombre");
         persona.nombre = nuevoNombre;
@@ -25,7 +25,7 @@ function editarPersona(persona: Persona) {
     catch (e) { if (e instanceof Error) { alert(e.message) } }
 }
 
-function actualizarPersonas() {
+function actualizarPersonas(): void {
     let listaPersonas = document.createElement("div");
     personas.forEach((persona, i) => {
         let nuevoParrafo = document.createElement("p")

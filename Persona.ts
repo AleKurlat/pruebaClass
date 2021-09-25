@@ -3,7 +3,7 @@ export class Persona {
     protected _edad: number;
     ['constructor']!: typeof Persona;
 
-    static chequearNombre(nombre: string | null) {
+    static chequearNombre(nombre: string | null): string {
         if (!nombre) {
             throw new Error("Debe ingresarse un nombre para continuar");
         }
@@ -13,7 +13,7 @@ export class Persona {
         return nombre;
     }
 
-    static chequearEdad(edad: string | number | null) {
+    static chequearEdad(edad: string | number | null): number {
         if (!edad && edad != 0) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
@@ -41,7 +41,7 @@ export class Persona {
         this._nombre = this.constructor.chequearNombre(nuevoNombre)
     }
 
-    get nombre() {
+    get nombre(): string {
         return this._nombre;
     }
 
@@ -49,11 +49,11 @@ export class Persona {
         this._edad = this.constructor.chequearEdad(nuevaEdad);
     }
 
-    get edad() {
+    get edad(): number {
         return this._edad
     }
 
-    obtenerDescripcion() {
+    obtenerDescripcion(): string {
         const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}`;
         return descripcion;
     }
