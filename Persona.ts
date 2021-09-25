@@ -1,6 +1,6 @@
 export class Persona {
-    protected _nombre?: string;
-    protected _edad?: number;
+    protected _nombre: string;
+    protected _edad: number;
     ['constructor']!: typeof Persona;
 
     static chequearNombre(nombre: string | null) {
@@ -44,9 +44,17 @@ export class Persona {
         this._nombre = nombreOk;
     }
 
+    get nombre() {
+        return this._nombre;
+    }
+
     set edad(nuevaEdad: string | number | null) {
         const edadOk = this.constructor.chequearEdad(nuevaEdad);
         this._edad = edadOk;
+    }
+
+    get edad() {
+        return this._edad
     }
 
     obtenerDescripcion() {

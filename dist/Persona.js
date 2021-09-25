@@ -32,9 +32,15 @@ export class Persona {
         const nombreOk = this.constructor.chequearNombre(nuevoNombre);
         this._nombre = nombreOk;
     }
+    get nombre() {
+        return this._nombre;
+    }
     set edad(nuevaEdad) {
         const edadOk = this.constructor.chequearEdad(nuevaEdad);
         this._edad = edadOk;
+    }
+    get edad() {
+        return this._edad;
     }
     obtenerDescripcion() {
         const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}`;
