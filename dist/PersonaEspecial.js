@@ -15,7 +15,8 @@ export class PersonaEspecial extends Persona {
         return ocupacion;
     }
     obtenerDescripcion() {
-        const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}, Ocupación: ${this._ocupacion}`;
+        let descripcion = super.obtenerDescripcion();
+        descripcion += `, Ocupación: ${this._ocupacion}`;
         return descripcion;
     }
 }
