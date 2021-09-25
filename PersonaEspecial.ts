@@ -15,8 +15,13 @@ export class PersonaEspecial extends Persona {
         this._ocupacion = this.chequearOcupacion(nuevaOcupacion)
     }
 
-    chequearOcupacion(ocupacion: string): string {
+    protected chequearOcupacion(ocupacion: string): string {
         if (!ocupacion) { throw new Error("Debe ingresarse una ocupación") }
         return ocupacion;
+    }
+
+    public obtenerDescripcion(): string {
+        const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}, Ocupación: ${this._ocupacion}`;
+        return descripcion;
     }
 }

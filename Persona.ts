@@ -23,7 +23,7 @@ export class Persona {
         this._edad = this.chequearEdad(nuevaEdad);
     }
 
-    chequearNombre(nombre: string | null): string {
+    protected chequearNombre(nombre: string | null): string {
         if (!nombre) {
             throw new Error("Debe ingresarse un nombre para continuar");
         }
@@ -33,7 +33,7 @@ export class Persona {
         return nombre;
     }
 
-    chequearEdad(edad: string | number | null): number {
+    protected chequearEdad(edad: string | number | null): number {
         if (!edad && edad != 0) {
             throw new Error("Debe ingresarse una edad para continuar");
         }
@@ -52,7 +52,7 @@ export class Persona {
 
     }
 
-    obtenerDescripcion(): string {
+    public obtenerDescripcion(): string {
         const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}`;
         return descripcion;
     }
