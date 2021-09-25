@@ -1,28 +1,9 @@
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
-var _Persona_nombre, _Persona_edad;
 export class Persona {
     constructor(nombre, edad) {
-        _Persona_nombre.set(this, void 0);
-        _Persona_edad.set(this, void 0);
         const nombreOk = this.constructor.chequearNombre(nombre);
-        if (nombreOk) {
-            __classPrivateFieldSet(this, _Persona_nombre, nombreOk, "f");
-        }
-        ;
+        this._nombre = nombreOk;
         const edadANumero = this.constructor.chequearEdad(edad);
-        if (edadANumero) {
-            __classPrivateFieldSet(this, _Persona_edad, edadANumero, "f");
-        }
+        this._edad = edadANumero;
     }
     static chequearNombre(nombre) {
         if (!nombre) {
@@ -55,21 +36,16 @@ export class Persona {
             return edadANumero;
         }
     }
-    cambiarNombre(nuevoNombre) {
+    set nombre(nuevoNombre) {
         const nombreOk = this.constructor.chequearNombre(nuevoNombre);
-        if (nombreOk) {
-            __classPrivateFieldSet(this, _Persona_nombre, nombreOk, "f");
-        }
+        this._nombre = nombreOk;
     }
-    cambiarEdad(nuevaEdad) {
+    set edad(nuevaEdad) {
         const edadOk = this.constructor.chequearEdad(nuevaEdad);
-        if (edadOk) {
-            __classPrivateFieldSet(this, _Persona_edad, edadOk, "f");
-        }
+        this._edad = edadOk;
     }
     obtenerDescripcion() {
-        const descripcion = `Nombre: ${__classPrivateFieldGet(this, _Persona_nombre, "f")}, Edad: ${__classPrivateFieldGet(this, _Persona_edad, "f")}`;
+        const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}`;
         return descripcion;
     }
 }
-_Persona_nombre = new WeakMap(), _Persona_edad = new WeakMap();

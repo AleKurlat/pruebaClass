@@ -1,6 +1,6 @@
 export class Persona {
-    #nombre?: string;
-    #edad?: number;
+    protected _nombre?: string;
+    protected _edad?: number;
     ['constructor']!: typeof Persona;
 
     static chequearNombre(nombre: string | null) {
@@ -41,23 +41,23 @@ export class Persona {
 
     constructor(nombre: string, edad: string | number) {
         const nombreOk = this.constructor.chequearNombre(nombre);
-        if (nombreOk) { this.#nombre = nombreOk };
+        this._nombre = nombreOk;
         const edadANumero = this.constructor.chequearEdad(edad);
-        if (edadANumero) { this.#edad = edadANumero; }
+        this._edad = edadANumero;
     }
 
-    cambiarNombre(nuevoNombre: string | null) {
+    set nombre(nuevoNombre: string | null) {
         const nombreOk = this.constructor.chequearNombre(nuevoNombre)
-        if (nombreOk) { this.#nombre = nombreOk }
+        this._nombre = nombreOk;
     }
 
-    cambiarEdad(nuevaEdad: string | number | null) {
+    set edad(nuevaEdad: string | number | null) {
         const edadOk = this.constructor.chequearEdad(nuevaEdad);
-        if (edadOk) { this.#edad = edadOk }
+        this._edad = edadOk;
     }
 
     obtenerDescripcion() {
-        const descripcion = `Nombre: ${this.#nombre}, Edad: ${this.#edad}`;
+        const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}`;
         return descripcion;
     }
 }

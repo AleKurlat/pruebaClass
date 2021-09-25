@@ -19,9 +19,9 @@ function agregarPersona() {
 function editarPersona(persona) {
     try {
         const nuevoNombre = prompt("Ingresar nuevo nombre");
-        persona.cambiarNombre(nuevoNombre);
+        persona.nombre = nuevoNombre;
         const nuevaEdad = prompt("Ingresar nueva edad");
-        persona.cambiarEdad(nuevaEdad);
+        persona.edad = nuevaEdad;
         actualizarPersonas();
     }
     catch (e) {
