@@ -1,4 +1,4 @@
-import { Persona } from "./Persona";
+import { Persona } from "./Persona.js";
 export class PersonaEspecial extends Persona {
     constructor(nombre, edad, ocupacion) {
         super(nombre, edad);
@@ -13,5 +13,9 @@ export class PersonaEspecial extends Persona {
             throw new Error("Debe ingresarse una ocupación");
         }
         return ocupacion;
+    }
+    obtenerDescripcion() {
+        const descripcion = `Nombre: ${this._nombre}, Edad: ${this._edad}, Ocupación: ${this._ocupacion}`;
+        return descripcion;
     }
 }
